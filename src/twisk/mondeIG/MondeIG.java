@@ -1,15 +1,22 @@
 package twisk.mondeIG;
 
+import twisk.outils.FabriqueIdentifiant;
+
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class MondeIG implements Iterable<EtapeIG> {
-    HashMap<Integer, EtapeIG> tableEtape = new HashMap<>() ;
+    HashMap<String, EtapeIG> tableEtape = new HashMap<>() ;
     public MondeIG(){
-        ActiviteIG act = new ActiviteIG("Toboggan","1",10,10);
-        this.tableEtape.put(1,act);
+        this.ajouter("Activité");
+        //this.tableEtape.put
     }
     public void ajouter(String type){
+        String id = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
+        if (type.equals("Activité")){
+            EtapeIG act = new ActiviteIG("Piscine",id,10,10);
+            tableEtape.put(id,act);
+        }
 
     }
 
