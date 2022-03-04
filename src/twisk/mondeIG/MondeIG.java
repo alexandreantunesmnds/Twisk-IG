@@ -9,7 +9,6 @@ public class MondeIG implements Iterable<EtapeIG> {
     HashMap<String, EtapeIG> tableEtape = new HashMap<>() ;
     public MondeIG(){
         this.ajouter("Activité");
-        //this.tableEtape.put
     }
     public void ajouter(String type){
         String id = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
