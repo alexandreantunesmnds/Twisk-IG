@@ -18,4 +18,10 @@ public abstract class EtapeIG {
         this.largeur = larg;
         this.hauteur = haut;
     }
+    public abstract String getNom();
+    public abstract  String getId();
+    public abstract int getPosX();
+    public abstract  int getPosY();
+    public abstract int getLarg();
+    public abstract int getHaut();
 }
