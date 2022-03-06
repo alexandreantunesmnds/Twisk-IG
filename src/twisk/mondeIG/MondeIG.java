@@ -1,11 +1,14 @@
 package twisk.mondeIG;
 
 import twisk.outils.FabriqueIdentifiant;
+import twisk.vues.Observateur;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class MondeIG implements Iterable<EtapeIG> {
+    private ArrayList<Observateur> obs = new ArrayList<>(10);
     HashMap<String, EtapeIG> tableEtape = new HashMap<>() ;
     public MondeIG(){
         this.ajouter("Activité");
