@@ -37,8 +37,8 @@ public class MondeIG implements Iterable<EtapeIG> {
                     EtapeIG act5 = new ActiviteIG("Restaurant", id, 10, 10);
                     tableEtape.put(id, act5);
                     break;
-
             }
+            this.notifierObservateurs() ;
         }
     }
 
@@ -49,8 +49,10 @@ public class MondeIG implements Iterable<EtapeIG> {
     public int getSize(){
         return tableEtape.size();
     }
-    /*public void ajouterObservateur(Observateur v){
-
+    public void ajouterObservateur(Observateur v){
+        this.obs.add(v) ;
     }
-    public void notifierObservateurs{}*/
+    public void notifierObservateurs(){
+        for (Observateur o : this.obs) o.reagir() ;
+    }
 }

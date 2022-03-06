@@ -13,6 +13,7 @@ import java.util.Collection;
 public class VueOutils extends TilePane implements Observateur{
     Button bouton;
     public VueOutils(MondeIG monde){
+        super();
         this.bouton = new Button();
         Tooltip tooltip = new Tooltip("Ajouter une étape");
         Tooltip.install(bouton,tooltip);
@@ -22,7 +23,7 @@ public class VueOutils extends TilePane implements Observateur{
         this.bouton.setGraphic(view);
         this.getChildren().add(bouton);
         this.bouton.setOnAction(new EcouteurBouton(monde));
-
+        monde.ajouterObservateur(this);
     }
     public void reagir(){
 
