@@ -9,8 +9,10 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
     EtapeIG etape;
     Label label;
     public VueEtapeIG(MondeIG monde,EtapeIG etape){
-        this.label = new Label(etape.getNom());
+        super();
+        this.label = new Label(etape.getNom() + " :  4 temps");
         this.getChildren().add(label);
+        this.etape = etape;
 
     }
 }

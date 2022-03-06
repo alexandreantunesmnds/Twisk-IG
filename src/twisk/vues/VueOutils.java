@@ -20,6 +20,8 @@ public class VueOutils extends TilePane implements Observateur{
         //Creating a graphic (image)
         Image img = new Image("/twisk/ressources/images/button_add.png");
         ImageView view = new ImageView(img);
+        view.setFitWidth(50);
+        view.setFitHeight(50);
         this.bouton.setGraphic(view);
         this.getChildren().add(bouton);
         this.bouton.setOnAction(new EcouteurBouton(monde));
