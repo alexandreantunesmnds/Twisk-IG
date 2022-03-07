@@ -14,6 +14,6 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
         this.monde = monde;
         this.etape = etape;
         this.label = new Label(this.etape.getNom() + " :  4 temps");
-        this.setStyle("-fx-border-color: #0059FF; -fx-background-insets: 0 0 -1 0, 0, 1, 2; -fx-background-radius: 3px, 3px, 2px, 1px;");
+        this.label.setStyle("-fx-text-fill: white");
     }
 }
