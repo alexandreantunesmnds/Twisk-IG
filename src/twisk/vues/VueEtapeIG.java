@@ -1,5 +1,6 @@
 package twisk.vues;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import twisk.mondeIG.EtapeIG;
@@ -15,5 +16,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
         this.etape = etape;
         this.label = new Label(this.etape.getNom() + " :  4 temps");
         this.label.setStyle("-fx-text-fill: white");
+        this.setSpacing(10);
+        this.setAlignment(Pos.CENTER);
     }
 }

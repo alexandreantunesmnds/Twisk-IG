@@ -8,7 +8,7 @@ public class TailleComposants {
         return instance;
     }
     public int getLargBox(){
-        this.LargBox = 40;
+        this.LargBox = 200;
         return this.LargBox;
     }
     public int getHautBox(){

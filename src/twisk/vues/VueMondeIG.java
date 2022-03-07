@@ -14,7 +14,6 @@ public class VueMondeIG extends Pane implements Observateur{
         this.monde = monde;
         for (EtapeIG etapes : this.monde){
             VueActiviteIG act = new VueActiviteIG(this.monde,etapes);
-            System.out.println(etapes.getNom());
             act.relocate(etapes.getPosX(), etapes.getPosY());
             act.resize(etapes.getLarg(),etapes.getHaut());
             this.getChildren().add(act);
