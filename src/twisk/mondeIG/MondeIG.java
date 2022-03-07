@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MondeIG implements Iterable<EtapeIG> {
-    private ArrayList<Observateur> obs = new ArrayList<>(10);
+    private ArrayList<Observateur> obs = new ArrayList<>();
     HashMap<String, EtapeIG> tableEtape = new HashMap<>() ;
     public MondeIG(){
         this.ajouter("Activité");
@@ -37,6 +37,8 @@ public class MondeIG implements Iterable<EtapeIG> {
                     EtapeIG act5 = new ActiviteIG("Restaurant", id, 10, 10);
                     tableEtape.put(id, act5);
                     break;
+                default:
+                    EtapeIG actDef = new ActiviteIG("Etape "+ id,id,10,10);
             }
             this.notifierObservateurs() ;
         }

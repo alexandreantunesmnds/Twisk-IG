@@ -8,14 +8,10 @@ import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 
 public class VueActiviteIG extends VueEtapeIG implements  Observateur{
-    Label label;
     public VueActiviteIG(MondeIG monde, EtapeIG etape) {
         super(monde, etape);
-        HBox box = new HBox(100);
-        box.setPadding(new Insets(50, 5 , 5, 50));
-        this.label = new Label();
-        box.getChildren().addAll(this.label);
-        label.relocate(100,100);
+        HBox box = new HBox();
+        this.getChildren().addAll(this.label,box);
     }
     public void reagir(){}
 }
