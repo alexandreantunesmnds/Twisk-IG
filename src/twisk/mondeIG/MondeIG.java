@@ -39,6 +39,7 @@ public class MondeIG implements Iterable<EtapeIG> {
                     break;
                 default:
                     EtapeIG actDef = new ActiviteIG("Etape "+ id,id,10,10);
+                    tableEtape.put(id, actDef);
             }
             this.notifierObservateurs() ;
         }

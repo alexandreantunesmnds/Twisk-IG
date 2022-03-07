@@ -18,9 +18,6 @@ public class MainTwisk extends Application {
         BorderPane root = new BorderPane() ;
         root.setBottom(new VueOutils(this.monde));
         root.setCenter(new VueMondeIG(this.monde));
-        if(this.monde.iterator().hasNext()) {
-            root.setCenter(new VueActiviteIG(this.monde, this.monde.iterator().next()));
-        }
         primaryStage.setTitle("TwiskIG");
         primaryStage.setScene(new Scene(root, 900, 700));
         primaryStage.show();
