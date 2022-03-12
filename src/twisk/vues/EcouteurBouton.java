@@ -13,7 +13,7 @@ public class EcouteurBouton implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         this.monde.ajouter("Activité");
-        System.out.println("On ajoute une étape");
+        //System.out.println("On ajoute une étape");
 
     }
 }
