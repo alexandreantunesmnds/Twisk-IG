@@ -19,4 +19,19 @@ public class PointDeControleIG {
         this.id = id;
         this.etape = etape;
     }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public String getId() {
+        return id;
+    }
+    public String getNomEtape(){
+        return this.etape.getNom();
+    }
 }
