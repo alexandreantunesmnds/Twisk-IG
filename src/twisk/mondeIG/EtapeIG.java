@@ -1,5 +1,7 @@
 package twisk.mondeIG;
 
+import twisk.vues.Observateur;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,7 +11,7 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
     protected String identifiant;
     protected int posX,posY;
     protected int largeur,hauteur;
-    protected ArrayList <PointDeControleIG> pcList = new ArrayList<>(4);
+    protected ArrayList <PointDeControleIG> pcList;
 
     public EtapeIG(String nom,String idf, int larg, int haut){
         //on positionne l'étape aléatoirement

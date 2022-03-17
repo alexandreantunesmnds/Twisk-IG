@@ -13,11 +13,11 @@ public class TailleComposants {
         return this.LargBox;
     }
     public int getHautBox(){
-        this.HautBox = 100;
+        this.HautBox = 50;
         return this.HautBox;
     }
     public double getCircleSize(){
-        this.circleSize = 10.0;
+        this.circleSize = 5.0;
         return this.circleSize;
     }
 

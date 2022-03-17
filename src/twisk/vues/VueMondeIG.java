@@ -14,12 +14,11 @@ public class VueMondeIG extends Pane implements Observateur{
         super();
         this.monde = monde;
         for (EtapeIG etapes : this.monde){
-            VueActiviteIG act = new VueActiviteIG(this.monde,etapes);
+            VueEtapeIG act = new VueActiviteIG(this.monde,etapes);
             act.relocate(etapes.getPosX(), etapes.getPosY());
             this.getChildren().add(act);
-            act.resize(etapes.getLarg(),etapes.getHaut());
         }
-        monde.ajouterObservateur(this);
+        this.monde.ajouterObservateur(this);
     }
 
     @Override
