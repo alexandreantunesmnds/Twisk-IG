@@ -1,0 +1,117 @@
+@startuml
+package twisk.mondeIG {
+   class ActiviteIG
+   class MondeIG
+   class EtapeIG
+}
+
+package java.util {
+
+interface Iterable<EtapeIG,PointDeControleIG> {
+  Iterator<EtapeIG> iterator()
+}
+}
+package twisk.outils {
+class FabriqueIdentifiant {
+int noEtape
+static FabriqueIdentifiant getInstance()
+String getIdentifiantEtape()
+}
+
+FabriqueIdentifiant -- "1" FabriqueIdentifiant : static
+}
+
+
+package twisk.vues {
+interface Observateur {
+void reagir()
+}
+
+abstract VueEtapeIG extends VBox implements Observateur{
+VueEtapeIG(MondeIG monde, EtapeIG etape)
+}
+
+class VueActiviteIG extends VueEtapeIG implements Observateur {
+VueActiviteIG(MondeIG monde, EtapeIG etape)
+void reagir()
+
+}
+
+class VueMondeIG implements Observateur {
+VueMondeIG(MondeIG monde)
+void reagir()
+}
+class VueOutils implements Observateur {
+VueOutils(MondeIG monde)
+void reagir()
+}
+class Circle{}
+class VuePointDeControleIG extends Circle implements Observateur {
+VuePointDeControleIG(MondeIG monde, PointDeControleIG point)
+void reagir()
+}
+
+
+VueEtapeIG --"1" Label
+VueActiviteIG --"1" Label
+VueMondeIG --|> Pane
+VueOutils --|> TilePane
+VueOutils -- "1" Button
+
+Button - "1" EcouteurBouton : "       "
+
+interface EventHandler
+
+EcouteurBouton ..|> EventHandler
+}
+
+VueEtapeIG - "1" EtapeIG
+
+
+package twisk.mondeIG {
+
+
+
+class MondeIG implements Iterable{
+MondeIG()
+void ajouter(String type)
+void ajouterObservateur(Observateur v)
+void notifierObservateurs()
+}
+
+abstract class EtapeIG implements Iterable {
+String nom
+String identifiant
+int posX
+int posY
+int largeur
+int hauteur
+
+EtapeIG(String nom, String idf, int larg, int haut)
+}
+
+class ActiviteIG {
+ActiviteIG(String nom, String idf, int larg, int haut)
+}
+class PointDeControleIG {
+int posX
+int posY
+String id
+PointDeControleIG (int posX, int posY, String id, EtapeIG etape)
+int getPosX()
+int getPosY()
+String getId()
+String getNomEtape()
+Double getTaille()
+}
+
+MondeIG "1"-right "*" Observateur
+
+MondeIG --"*" EtapeIG
+EtapeIG <|-down- ActiviteIG
+EtapeIG "1"--"*" PointDeControleIG
+
+
+
+}
+@enduml
