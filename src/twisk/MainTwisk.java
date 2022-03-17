@@ -1,14 +1,12 @@
 package twisk;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import twisk.mondeIG.MondeIG;
-import twisk.vues.VueActiviteIG;
-import twisk.vues.VueEtapeIG;
-import twisk.vues.VueMondeIG;
-import twisk.vues.VueOutils;
+import twisk.vues.*;
 
 public class MainTwisk extends Application {
     MondeIG monde;

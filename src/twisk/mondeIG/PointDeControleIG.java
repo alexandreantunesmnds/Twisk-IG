@@ -1,5 +1,7 @@
 package twisk.mondeIG;
 
+import twisk.outils.TailleComposants;
+
 public class PointDeControleIG {
     private int posX;
     private int posY;
@@ -33,5 +35,9 @@ public class PointDeControleIG {
     }
     public String getNomEtape(){
         return this.etape.getNom();
+    }
+    public double getTaille(){
+        TailleComposants constante = TailleComposants.getInstance();
+        return constante.getCircleSize();
     }
 }
