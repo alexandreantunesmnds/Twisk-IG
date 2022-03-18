@@ -13,6 +13,7 @@ public class MondeIG implements Iterable<EtapeIG>{
     private ArrayList<Observateur> obs = new ArrayList<>(10);
     private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
+    private PointDeControleIG point;
     public MondeIG(){
         this.ajouter("Activité");
     }
@@ -71,5 +72,12 @@ public class MondeIG implements Iterable<EtapeIG>{
     }
     public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2){
         this.arcList.add(new ArcIG(pt1,pt2));
+        notifierObservateurs();
+    }
+    public void selectionPoint(PointDeControleIG point){
+        if (this.point != null){
+            ajouter(this.point,point);
+        }
+        this.point = point;
     }
 }

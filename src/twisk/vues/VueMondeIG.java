@@ -1,9 +1,12 @@
 package twisk.vues;
 
 import javafx.scene.layout.Pane;
+import twisk.mondeIG.ArcIG;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
+
+import java.util.Iterator;
 
 public class VueMondeIG extends Pane implements Observateur{
     private MondeIG monde;
@@ -21,6 +24,10 @@ public class VueMondeIG extends Pane implements Observateur{
     @Override
     public void reagir() {
         this.getChildren().clear();
+        for (Iterator<ArcIG> it = this.monde.iteratorArc(); it.hasNext(); ) {
+            ArcIG arc = it.next();
+            this.getChildren().add(new VueArcIG(arc));
+        }
         for (EtapeIG etapes : this.monde){
             VueActiviteIG act = new VueActiviteIG(this.monde,etapes);
             act.relocate(etapes.getPosX(), etapes.getPosY());

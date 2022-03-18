@@ -3,8 +3,8 @@ package twisk.mondeIG;
 import twisk.outils.TailleComposants;
 
 public class PointDeControleIG {
-    private int posX;
-    private int posY;
+    private double posX;
+    private double posY;
     private String id;
     private EtapeIG etape;
 
@@ -15,18 +15,18 @@ public class PointDeControleIG {
      * @param id
      * @param etape
      */
-    public PointDeControleIG (int posX, int posY, String id, EtapeIG etape){
+    public PointDeControleIG (double posX, double posY, String id, EtapeIG etape){
         this.posX = posX;
         this.posY = posY;
         this.id = id;
         this.etape = etape;
     }
 
-    public int getPosX() {
+    public double getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public double getPosY() {
         return posY;
     }
 
