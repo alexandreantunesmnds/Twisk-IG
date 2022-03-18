@@ -1,5 +1,6 @@
 package twisk.mondeIG;
 
+import javafx.scene.shape.Arc;
 import twisk.outils.FabriqueIdentifiant;
 import twisk.outils.TailleComposants;
 import twisk.vues.Observateur;
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class MondeIG implements Iterable<EtapeIG> {
+public class MondeIG implements Iterable<EtapeIG>{
     private ArrayList<Observateur> obs = new ArrayList<>(10);
-    HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
+    private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
+    private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     public MondeIG(){
         this.ajouter("Activité");
     }
@@ -63,5 +65,8 @@ public class MondeIG implements Iterable<EtapeIG> {
         for (Observateur o : this.obs) {
             o.reagir();
         }
+    }
+    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2){
+        this.arcList.add(new ArcIG(pt1,pt2));
     }
 }

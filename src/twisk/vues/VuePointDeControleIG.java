@@ -12,7 +12,7 @@ public class VuePointDeControleIG extends Circle implements Observateur {
     public VuePointDeControleIG(MondeIG monde, PointDeControleIG point) {
         super(point.getTaille());
         this.relocate(point.getPosX(), point.getPosY());
-        monde.ajouterObservateur(this);
+        //monde.ajouterObservateur(this);
     }
 
     @Override

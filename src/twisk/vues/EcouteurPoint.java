@@ -1,9 +1,7 @@
 package twisk.vues;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import twisk.mondeIG.MondeIG;
 
 public class EcouteurPoint implements EventHandler<MouseEvent> {
     public EcouteurPoint (){
@@ -11,6 +9,6 @@ public class EcouteurPoint implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        //this.setOnMouseClicked;
+        //this.setOnMouseClicked
     }
 }
