@@ -1,12 +1,9 @@
 package twisk.vues;
 
 import javafx.scene.layout.Pane;
-import twisk.mondeIG.ActiviteIG;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
-
-import java.util.Iterator;
 
 public class VueMondeIG extends Pane implements Observateur{
     private MondeIG monde;

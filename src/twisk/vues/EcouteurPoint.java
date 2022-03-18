@@ -9,6 +9,6 @@ public class EcouteurPoint implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        //this.setOnMouseClicked
+
     }
 }
