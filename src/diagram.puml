@@ -105,9 +105,16 @@ String getNomEtape()
 Double getTaille()
 }
 
+class ArcIG {
+PointDeControleIG point1;
+PointDeControleIG point2;
+public ArcIG(PointDeControleIG point1, PointDeControleIG point2)
+}
+
 MondeIG "1"-right "*" Observateur
 
 MondeIG --"*" EtapeIG
+MondeIG --"*" ArcIG
 EtapeIG <|-down- ActiviteIG
 EtapeIG "1"--"*" PointDeControleIG
 

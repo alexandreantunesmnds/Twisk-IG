@@ -55,6 +55,9 @@ public class MondeIG implements Iterable<EtapeIG>{
     public Iterator<EtapeIG> iterator() {
         return tableEtape.values().iterator();
     }
+    public Iterator<ArcIG> iteratorArc() {
+        return arcList.iterator();
+    }
     public int getSize(){
         return tableEtape.size();
     }
