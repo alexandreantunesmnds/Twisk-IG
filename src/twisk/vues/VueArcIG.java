@@ -9,17 +9,28 @@ import twisk.mondeIG.ArcIG;
 public class VueArcIG extends Pane implements Observateur {
     public VueArcIG(ArcIG arc){
         Line line = new Line();
-        // points
-        /*double points[] = { 100.0d, 20.0d, 40.0d, 240.0d, 60.0d,
-                180.0d, 80.0d, 200.0d, 100.0d, 90.0d, 20.0d, 20.0d };*/
+        Polyline polyLine = new Polyline();
+        //Ligne
         line.setStartX(arc.getPoint1().getPosX());
         line.setStartY(arc.getPoint1().getPosY());
         line.setEndX(arc.getPoint2().getPosX());
         line.setEndY(arc.getPoint2().getPosY());
-        line.setStrokeWidth(4);
+        //Tête de la flèche
+        double angle = Math.atan2((line.getEndY() - line.getStartY()), (line.getEndX() - line.getStartX())) - Math.PI / 2.0;
+        double sin = Math.sin(angle);
+        double cos = Math.cos(angle);
+        //point 1
+        double x1 = (- 1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * 10 + line.getEndX();
+        double y1 = (- 1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * 10 + line.getEndY();
+        //point 2
+        double x2 = (1.0 / 2.0 * cos + Math.sqrt(3) / 2 * sin) * 10 + line.getEndX();
+        double y2 = (1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * 10 + line.getEndY();
+        polyLine.getPoints().setAll(x1,y1,x2,y2,line.getEndX(),line.getEndY());
+        line.setStrokeWidth(5);
         line.setStroke(Color.MAGENTA);
-        //Polyline polyLine = new Polyline(points);
-        this.getChildren().addAll(line);
+        polyLine.setStroke(Color.MAGENTA);
+        polyLine.setStrokeWidth(10);
+        this.getChildren().addAll(line,polyLine);
     }
 
     @Override
