@@ -14,8 +14,10 @@ public class MondeIG implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     private PointDeControleIG point;
+    private int i;
     public MondeIG(){
         this.ajouter("Activité");
+        this.i = 1;
     }
     public void ajouter(String type) {
         if (type.equals("Activité")) {
@@ -72,12 +74,18 @@ public class MondeIG implements Iterable<EtapeIG>{
     }
     public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2){
         this.arcList.add(new ArcIG(pt1,pt2));
+        this.point = null;
+        this.i = 3;
         notifierObservateurs();
+         //les conditions à ajouter pour la validité des arcs : une etape ne peut être reliée que par un arc(ou aucun) avec une autre étape ; un point de controle doit relié un autre point de controle (+ d'une autre étape)
     }
     public void selectionPoint(PointDeControleIG point){
-        if (this.point != null){
+        if (this.point != null && this.i==2){//si le point est initialisé on peut ajouter l'arc
             ajouter(this.point,point);
         }
-        this.point = point;
+        if(this.i == 1) {
+            this.point = point;
+        }
+        this.i = 2;
     }
 }
