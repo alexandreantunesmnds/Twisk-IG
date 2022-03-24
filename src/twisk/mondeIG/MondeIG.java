@@ -16,6 +16,8 @@ public class MondeIG implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     private PointDeControleIG point;
+    private int relier = 0;
+
     public MondeIG(){
         this.ajouter("Activité");
     }
@@ -58,8 +60,8 @@ public class MondeIG implements Iterable<EtapeIG>{
     public Iterator<EtapeIG> iterator() {
         return tableEtape.values().iterator();
     }
-    public Iterator<ArcIG> iteratorArc() {
-        return arcList.iterator();
+    public Iterable<ArcIG> iteratorArc() {
+        return arcList;
     }
     public int getSize(){
         return tableEtape.size();
@@ -75,31 +77,37 @@ public class MondeIG implements Iterable<EtapeIG>{
     public int getNbArcs(){
         return arcList.size();
     }
-    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2){
-        if (Objects.equals(pt1.getNomEtape(), pt2.getNomEtape())){
+    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) {
+        if (Objects.equals(pt1.getNomEtape(), pt2.getNomEtape())) {
             System.out.println("\nAjout de l'arc impossible : vous essayez de relier une étape à elle même\n");
         }
-        else if (this.getNbArcs() > 0){//1 etape ne oeut pas aller 2 fois au même endroit à revoir
-            for (Iterator<ArcIG> it = this.iteratorArc(); it.hasNext();){
-                ArcIG arc = it.next();
-                    if (Objects.equals(arc.getPoint1().getNomEtape(), pt1.getNomEtape()) || Objects.equals(arc.getPoint2().getNomEtape(), pt2.getNomEtape())){
-                        System.out.println("Ajout de l'arc impossible : vous essayez de relier 2 étapes déjà reliées entre-elles");
-                    }
-                    if (arc.getPoint1().getPosX() == pt1.getPosX() && arc.getPoint1().getPosY() == pt1.getPosY() || arc.point2.getPosX() == pt1.getPosX() && arc.point2.getPosY() == pt1.getPosY() || arc.point1.getPosX() == pt2.getPosX() && arc.point1.getPosY() == pt2.getPosY() || arc.point2.getPosX() == pt2.getPosX() && arc.point2.getPosY() == pt2.getPosY()){
-                        System.out.println(" Ajout de l'arc impossible : Vous essayez de relier 2 points de contrôles déjà reliés");
-                    }
+        else{
+            for (ArcIG arc : this.iteratorArc() ) {
+                if (arc.getPoint2().getNomEtape() == pt2.getNomEtape()){
+                    System.out.println("\nAjout de l'arc impossible : vous essayez de relier 2 fois une étape\n");
+                    return;
                 }
-        }
-        else {
+            }
             this.arcList.add(new ArcIG(pt1, pt2));
+            //quand l'arc est ajouté on informe que les deux points sont reliés
+            this.relier = 1;
+            this.point = null;
             notifierObservateurs();
         }
-         //les conditions à ajouter pour la validité des arcs : une etape ne peut être reliée que par un arc(ou aucun) avec une autre étape ; un point de controle doit relié un autre point de controle (+ d'une autre étape)
     }
+    //les conditions à ajouter pour la validité des arcs : une etape ne peut être reliée que par un arc(ou aucun) avec une autre étape ; un point de controle doit relié un autre point de controle (+ d'une autre étape)
     public void selectionPoint(PointDeControleIG point){
-        if (this.point != null){//si le point est initialisé on peut ajouter l'arc
+        for (ArcIG arc : this.iteratorArc() ) {
+            if (arc.getPoint1() == point || arc.getPoint2() == point){
+                return;
+            }
+        }
+        if (this.point != null && this.relier == 0){//si le point est initialisé et si la liaison est possible alors on peut ajouter l'arc
             ajouter(this.point,point);
         }
-        this.point = point;
+        else{
+            this.point = point;
+            this.relier = 0;
+        }
     }
 }

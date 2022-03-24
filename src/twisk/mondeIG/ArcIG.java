@@ -1,8 +1,8 @@
 package twisk.mondeIG;
 
 public class ArcIG {
-    PointDeControleIG point1;
-    PointDeControleIG point2;
+    private PointDeControleIG point1;
+    private PointDeControleIG point2;
     public ArcIG(PointDeControleIG point1, PointDeControleIG point2){
         this.point1 = point1;
         this.point2 = point2;
