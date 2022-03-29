@@ -16,6 +16,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     private PointDeControleIG point;
+    private EtapeIG etape;
+    private ArrayList<EtapeIG> etapes = new ArrayList<>(10);
     private int relier = 0;
 
     public MondeIG(){
@@ -100,5 +102,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.point = point;
             this.relier = 0;
         }
+    }
+    public void selectionEtapes(EtapeIG etape){
+        this.etapes.add(etape);
     }
 }

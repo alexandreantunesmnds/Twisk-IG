@@ -12,6 +12,7 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
     protected int posX,posY;
     protected int largeur,hauteur;
     protected ArrayList <PointDeControleIG> pcList;
+    protected int selected;
 
     public EtapeIG(String nom,String idf, int larg, int haut){
         //on positionne l'étape aléatoirement
@@ -22,6 +23,7 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
         this.identifiant = idf;
         this.largeur = larg;
         this.hauteur = haut;
+        this.selected = 0;
     }
     public abstract Iterator<PointDeControleIG> iterator();
     public abstract String getNom();
@@ -30,4 +32,6 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
     public abstract  int getPosY();
     public abstract int getLarg();
     public abstract int getHaut();
+    public abstract void etapeSelect();
+    public abstract int getSelected();
 }

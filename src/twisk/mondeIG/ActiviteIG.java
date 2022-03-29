@@ -38,4 +38,12 @@ public class ActiviteIG extends EtapeIG {
     public int getHaut(){
         return this.hauteur;
     }
+
+    @Override
+    public void etapeSelect() {
+        this.selected = 1;
+    }
+    public int getSelected(){
+        return this.selected;
+    }
 }

@@ -9,7 +9,7 @@ public class PointDeControleIG {
     private EtapeIG etape;
 
     /**
-     * COnstructeur
+     * Constructeur
      * @param posX
      * @param posY
      * @param id
