@@ -1,7 +1,9 @@
 package twisk.vues;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+import twisk.exceptions.TwiskException;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
 
@@ -15,6 +17,16 @@ public class EcouteurPoint implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        this.monde.selectionPoint(this.point);
+        try {
+            this.monde.selectionPoint(this.point);
+        } catch (TwiskException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erreur !");
+
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 }

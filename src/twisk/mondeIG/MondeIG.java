@@ -1,6 +1,7 @@
 package twisk.mondeIG;
 
 import javafx.scene.shape.Arc;
+import twisk.exceptions.TwiskException;
 import twisk.outils.FabriqueIdentifiant;
 import twisk.outils.TailleComposants;
 import twisk.vues.Observateur;
@@ -77,15 +78,14 @@ public class MondeIG implements Iterable<EtapeIG>{
     public int getNbArcs(){
         return arcList.size();
     }
-    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) {
+    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) throws TwiskException {
         if (Objects.equals(pt1.getNomEtape(), pt2.getNomEtape())) {
-            System.out.println("\nAjout de l'arc impossible : vous essayez de relier une étape à elle même\n");
+            throw(new TwiskException("\nAjout de l'arc impossible : vous essayez de relier une étape à elle même\n"));
         }
         else{
             for (ArcIG arc : this.iteratorArc() ) {
-                if (arc.getPoint2().getNomEtape() == pt2.getNomEtape()){
-                    System.out.println("\nAjout de l'arc impossible : vous essayez de relier 2 fois une étape\n");
-                    return;
+                if (Objects.equals(arc.getPoint2().getNomEtape(), pt2.getNomEtape())){
+                    throw(new TwiskException("\nAjout de l'arc impossible : vous essayez de relier 2 fois une étape\n"));
                 }
             }
             this.arcList.add(new ArcIG(pt1, pt2));
@@ -96,7 +96,7 @@ public class MondeIG implements Iterable<EtapeIG>{
         }
     }
     //les conditions à ajouter pour la validité des arcs : une etape ne peut être reliée que par un arc(ou aucun) avec une autre étape ; un point de controle doit relié un autre point de controle (+ d'une autre étape)
-    public void selectionPoint(PointDeControleIG point){
+    public void selectionPoint(PointDeControleIG point) throws TwiskException {
         for (ArcIG arc : this.iteratorArc() ) {
             if (arc.getPoint1() == point || arc.getPoint2() == point){
                 return;
