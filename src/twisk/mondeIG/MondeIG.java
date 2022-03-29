@@ -12,8 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class MondeIG implements Iterable<EtapeIG>{
-    private ArrayList<Observateur> obs = new ArrayList<>(10);
+public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> tableEtape = new HashMap<>(10) ;
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     private PointDeControleIG point;
@@ -66,14 +65,6 @@ public class MondeIG implements Iterable<EtapeIG>{
     }
     public int getSize(){
         return tableEtape.size();
-    }
-    public void ajouterObservateur(Observateur v){
-        this.obs.add(v) ;
-    }
-    public void notifierObservateurs(){
-        for (Observateur o : this.obs) {
-            o.reagir();
-        }
     }
     public int getNbArcs(){
         return arcList.size();
