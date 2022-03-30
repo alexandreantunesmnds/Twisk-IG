@@ -22,6 +22,7 @@ public class VueMenu extends MenuBar {
         // Create MenuItems
         MenuItem quitter = new MenuItem("Quitter");
         MenuItem supprimer = new MenuItem("Supprimer");
+        MenuItem renommer = new MenuItem("Renommer la sélection");
         quitter.setOnAction(new EcouteurQuitter());
         supprimer.setOnAction(new EcouteurSupprimer(this.monde));
 

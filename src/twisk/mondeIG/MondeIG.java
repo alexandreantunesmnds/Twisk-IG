@@ -120,6 +120,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                 }
             }
         }
-            notifierObservateurs();
+        notifierObservateurs();
     }
 }
