@@ -12,7 +12,7 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
     protected int posX,posY;
     protected int largeur,hauteur;
     protected ArrayList <PointDeControleIG> pcList;
-    protected int selected;
+    protected int selected; //si l'étape est selectionnée = à 1
 
     public EtapeIG(String nom,String idf, int larg, int haut){
         //on positionne l'étape aléatoirement

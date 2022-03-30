@@ -17,7 +17,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private ArrayList<ArcIG> arcList = new ArrayList<>(10);
     private PointDeControleIG point;
     private EtapeIG etape;
-    private ArrayList<EtapeIG> etapes = new ArrayList<>(10);
+    private ArrayList<EtapeIG> etapes = new ArrayList<>(10); //étapes selectionnées
     private int relier = 0;
 
     public MondeIG(){
@@ -68,9 +68,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     public int getSize(){
         return tableEtape.size();
     }
-    public int getNbArcs(){
-        return arcList.size();
-    }
     public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) throws TwiskException {
         if (Objects.equals(pt1.getNomEtape(), pt2.getNomEtape())) {
             throw(new TwiskException("\nAjout de l'arc impossible : vous essayez de relier une étape à elle même\n"));
@@ -114,5 +111,15 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.etapes.add(etape);
         }
         notifierObservateurs();
+    }
+    public void supprimerEtapes(){
+        if (this.etape != null) { // si aucune étape n'est encore selectionnée on ne fait rien
+            for (EtapeIG etapes : this.etapes) {
+                if (etapes.getSelected() == 1) {
+                    this.tableEtape.remove(etapes.getId());
+                }
+            }
+        }
+            notifierObservateurs();
     }
 }
