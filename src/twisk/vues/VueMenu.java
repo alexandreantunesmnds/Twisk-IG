@@ -22,6 +22,7 @@ public class VueMenu extends MenuBar {
         // Create MenuItems
         MenuItem quitter = new MenuItem("Quitter");
         MenuItem supprimer = new MenuItem("Supprimer");
+        quitter.setOnAction(new EcouteurQuitter());
 
         // Add menuItems to the Menus
         fichier.getItems().addAll(quitter);
