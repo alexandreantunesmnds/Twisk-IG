@@ -43,6 +43,9 @@ public class ActiviteIG extends EtapeIG {
     public void etapeSelect() {
         this.selected = 1;
     }
+    public void etapeDeSelect(){
+        this.selected = -1;
+    }
     public int getSelected(){
         return this.selected;
     }

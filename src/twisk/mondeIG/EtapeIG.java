@@ -33,5 +33,6 @@ public abstract class EtapeIG implements Iterable <PointDeControleIG>{
     public abstract int getLarg();
     public abstract int getHaut();
     public abstract void etapeSelect();
+    public abstract void etapeDeSelect();
     public abstract int getSelected();
 }

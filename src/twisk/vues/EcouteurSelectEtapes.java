@@ -14,7 +14,5 @@ public class EcouteurSelectEtapes implements EventHandler<MouseEvent> {
     }
     public void handle(MouseEvent mouseEvent){
         this.monde.selectionEtapes(this.etape);
-        this.etape.etapeSelect();
-        System.out.println("Vous avez sélectionné une étape");
     }
 }

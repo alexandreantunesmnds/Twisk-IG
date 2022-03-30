@@ -13,12 +13,14 @@ public class VueActiviteIG extends VueEtapeIG implements  Observateur{
         super(monde, etape);
         TailleComposants constante = TailleComposants.getInstance();
         HBox box = new HBox();
-        this.setStyle("-fx-background-color: #619bdc;-fx-border-color: #0059FF; -fx-background-insets: 0 0 -1 0, 0, 1, 2; -fx-background-radius: 3px, 3px, 2px, 1px;");
-        box.setStyle("-fx-background-color: #c9c9c9;-fx-border-color: #3b69a6; -fx-border-width: 2");
         box.setPrefSize(constante.getLargBox(), constante.getHautBox());
         if (etape.getSelected() == 1){
-            this.setStyle("-fx-background-color: #00FF00;-fx-border-color: #00FF00; -fx-background-insets: 0 0 -1 0, 0, 1, 2; -fx-background-radius: 3px, 3px, 2px, 1px;");
-            box.setStyle("-fx-background-color: #00FF00;-fx-border-color:  #00FF00; -fx-border-width: 2");
+            this.setStyle("-fx-background-color: #619bdc;-fx-border-color: #00FF00; -fx-background-insets: 0 0 -1 0, 0, 1, 2; -fx-background-radius: 3px, 3px, 2px, 1px;");
+            box.setStyle("-fx-background-color: #c9c9c9;-fx-border-color: #00FF00; -fx-border-width: 2");
+        }
+        else{
+            this.setStyle("-fx-background-color: #619bdc;-fx-border-color: #0059FF; -fx-background-insets: 0 0 -1 0, 0, 1, 2; -fx-background-radius: 3px, 3px, 2px, 1px;");
+            box.setStyle("-fx-background-color: #c9c9c9;-fx-border-color: #3b69a6; -fx-border-width: 2");
         }
         this.setOnMouseClicked(new EcouteurSelectEtapes(monde,etape));
         this.getChildren().addAll(this.label,box);

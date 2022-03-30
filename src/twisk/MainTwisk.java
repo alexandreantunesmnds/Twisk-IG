@@ -13,7 +13,9 @@ public class MainTwisk extends Application {
     @Override
     public void start (Stage primaryStage) {
         this.monde = new MondeIG();
+        VueMenu menu = new VueMenu(this.monde);
         BorderPane root = new BorderPane() ;
+        root.setTop(menu.getMenuBar());
         root.setBottom(new VueOutils(this.monde));
         root.setCenter(new VueMondeIG(this.monde));
         primaryStage.setTitle("TwiskIG");

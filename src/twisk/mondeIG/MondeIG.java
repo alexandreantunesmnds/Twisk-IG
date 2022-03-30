@@ -104,6 +104,15 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
     }
     public void selectionEtapes(EtapeIG etape){
-        this.etapes.add(etape);
+        if (this.etape != null && this.etape.getNom().equals(etape.getNom())){
+            this.etape.etapeDeSelect();
+            this.etapes.remove(this.etape);
+        }
+        else {
+            this.etape = etape;
+            this.etape.etapeSelect();
+            this.etapes.add(etape);
+        }
+        notifierObservateurs();
     }
 }
