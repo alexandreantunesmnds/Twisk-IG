@@ -3,10 +3,13 @@ package twisk.vues;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import twisk.mondeIG.MondeIG;
 
+import java.util.Optional;
 
-public class VueMenu extends MenuBar {
+
+public class VueMenu extends MenuBar implements Observateur {
     private MondeIG monde;
     private MenuBar menuBar;
     public VueMenu(MondeIG monde){
@@ -25,12 +28,18 @@ public class VueMenu extends MenuBar {
         MenuItem renommer = new MenuItem("Renommer la sélection");
         quitter.setOnAction(new EcouteurQuitter());
         supprimer.setOnAction(new EcouteurSupprimer(this.monde));
+        renommer.setOnAction(new EcouteurRenommer(monde));
+        this.reagir();
 
         // Add menuItems to the Menus
         fichier.getItems().addAll(quitter);
-        edition.getItems().addAll(supprimer);
+        edition.getItems().addAll(supprimer,renommer);
     }
     public MenuBar getMenuBar(){
         return this.menuBar;
+    }
+
+    @Override
+    public void reagir() {
     }
 }

@@ -54,6 +54,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                     tableEtape.put(id, actDef);
                     break;
             }
+            //On retire les sélections à chaque nouvel ajout d'étape
+            for (EtapeIG etapes : this.etapes){
+                etapes.etapeDeSelect();
+            }
+            this.etapes.clear();
             this.notifierObservateurs();
         }
     }
@@ -100,18 +105,18 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.relier = 0;
         }
     }
-    public void selectionEtapes(EtapeIG etape){
-        if (this.etape != null && this.etape.getNom().equals(etape.getNom())){
+    public void selectionEtapes(EtapeIG etape) {
+        if (this.etape != null && this.etape.getNom().equals(etape.getNom())) {
             this.etape.etapeDeSelect();
             this.etapes.remove(this.etape);
-        }
-        else {
+        } else {
             this.etape = etape;
             this.etape.etapeSelect();
             this.etapes.add(etape);
         }
         notifierObservateurs();
     }
+
     public void supprimerEtapes(){
         if (this.etape != null) { // si aucune étape n'est encore selectionnée on ne fait rien
             for (EtapeIG etapes : this.etapes) {
@@ -121,5 +126,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             }
         }
         notifierObservateurs();
+    }
+    public void renommerEtape(String nom){
+        if(this.etapes != null && this.etapes.size() == 1) {
+            this.etape.nom = nom;
+            notifierObservateurs();
+        }
     }
 }
