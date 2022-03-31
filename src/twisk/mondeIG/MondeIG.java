@@ -122,10 +122,19 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             for (EtapeIG etapes : this.etapes) {
                 if (etapes.getSelected() == 1) {
                     this.tableEtape.remove(etapes.getId());
+                    if (this.arcList.size() != 0) {
+                        this.arcList.removeIf(arc -> arc.getPoint1().getNomEtape().equals(etapes.getNom()) || arc.getPoint2().getNomEtape().equals(etapes.getNom()));
+                        for (ArcIG arc : this.iteratorArc()) {
+                            if (arc.getPoint1().getNomEtape().equals(etapes.getNom())) {
+                                this.arcList.remove(arc);
+                            }
+                            notifierObservateurs();
+                        }
+                    }
                 }
+                notifierObservateurs();
             }
         }
-        notifierObservateurs();
     }
     public void renommerEtape(String nom){
         if(this.etapes != null && this.etapes.size() == 1) {
