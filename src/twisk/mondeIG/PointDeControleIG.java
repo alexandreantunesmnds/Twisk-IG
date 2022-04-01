@@ -40,4 +40,10 @@ public class PointDeControleIG {
         TailleComposants constante = TailleComposants.getInstance();
         return constante.getCircleSize();
     }
+    public void setX(double posX){
+        this.posX = posX;
+    }
+    public void setY(double posY){
+        this.posY = posY;
+    }
 }

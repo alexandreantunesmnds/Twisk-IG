@@ -18,7 +18,7 @@ public class VueOutils extends TilePane implements Observateur{
         Tooltip tooltip = new Tooltip("Ajouter une étape");
         Tooltip.install(bouton,tooltip);
         //Creating a graphic (image)
-        Image img = new Image("/twisk/ressources/images/button_add.png");
+        Image img = new Image("twisk/ressources/images/add_button.png");
         ImageView view = new ImageView(img);
         view.setFitWidth(50);
         view.setFitHeight(50);

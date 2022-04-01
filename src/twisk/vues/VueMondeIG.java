@@ -18,7 +18,9 @@ public class VueMondeIG extends Pane implements Observateur{
             act.relocate(etapes.getPosX(), etapes.getPosY());
             this.getChildren().add(act);
         }
+        this.setOnDragOver(new EcouteurDragOver());
         this.monde.ajouterObservateur(this);
+        this.setOnDragDropped(new EcouteurDragDrop(this.monde));
     }
 
     @Override

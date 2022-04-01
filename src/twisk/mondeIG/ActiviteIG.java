@@ -49,4 +49,13 @@ public class ActiviteIG extends EtapeIG {
     public int getSelected(){
         return this.selected;
     }
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+    public void setPosY(int posY){
+        this.posY = posY;
+    }
+    public ArrayList <PointDeControleIG> getPoint(){
+        return this.pcList;
+    }
 }

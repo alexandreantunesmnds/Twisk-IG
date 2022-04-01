@@ -142,4 +142,24 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             notifierObservateurs();
         }
     }
+    public HashMap<String, EtapeIG> getHash(){
+        return this.tableEtape;
+    }
+    public void positionEtapes(int dragEventX, int dragEventY, EtapeIG etp){
+        etp.setPosX(dragEventX - (etp.getLarg())/2);
+        etp.setPosY(dragEventY - (etp.getHaut())/2);
+
+        etp.getPoint().get(0).setX(etp.getPosX());
+        etp.getPoint().get(0).setY(etp.getPosY() + (etp.getHaut())/2);
+
+        etp.getPoint().get(1).setX(etp.getPosX() + (etp.getLarg())/2);
+        etp.getPoint().get(1).setY(etp.getPosY());
+
+        etp.getPoint().get(2).setX(etp.getPosX() + etp.getLarg());
+        etp.getPoint().get(2).setY(etp.getPosY() + (etp.getHaut())/2);
+
+        etp.getPoint().get(3).setX(etp.getPosX() + (etp.getLarg())/2);
+        etp.getPoint().get(3).setY(etp.getPosY() + etp.getHaut());
+        this.notifierObservateurs();
+    }
 }

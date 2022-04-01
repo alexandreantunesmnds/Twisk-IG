@@ -23,7 +23,6 @@ public class VueActiviteIG extends VueEtapeIG implements  Observateur{
             box.setStyle("-fx-background-color: #c9c9c9;-fx-border-color: #3b69a6; -fx-border-width: 2");
         }
         this.setOnMouseClicked(new EcouteurSelectEtapes(monde,etape));
-        this.setOnDragDetected(new EcouteurSources(box));
         this.getChildren().addAll(this.label,box);
     }
     public void reagir(){}

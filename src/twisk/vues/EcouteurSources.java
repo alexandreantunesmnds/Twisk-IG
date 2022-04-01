@@ -2,6 +2,7 @@ package twisk.vues;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
@@ -11,22 +12,23 @@ import twisk.mondeIG.EtapeIG;
 
 public class EcouteurSources implements EventHandler<MouseEvent> {
     private EtapeIG etape;
-    private HBox box;
-    public EcouteurSources(HBox box){
-        this.box = box;
+    private VueEtapeIG vue;
+    public EcouteurSources(VueEtapeIG vue, EtapeIG etape){
+        this.vue = vue;
+        this.etape = etape;
     }
 
     @Override
     public void handle(MouseEvent t) {
-        System.out.println("DnD detecté.");
-        Circle circle = new Circle();
-        final Dragboard dragBroard = this.box.startDragAndDrop(TransferMode.COPY);
-        // Remlissage du contenu.
-        final ClipboardContent content = new ClipboardContent();
-        // Exporter en tant que texte.
-        content.putString("Un rectangle rouge.");
-        //
-        dragBroard.setContent(content);
-        t.consume();
+        System.out.println("\nIdentifiant source : " + this.etape.getId());
+        Dragboard board = this.vue.startDragAndDrop(TransferMode.MOVE);
+        ClipboardContent content = new ClipboardContent();
+        this.vue.setId(this.etape.getId());
+        DataFormat paintFormat = DataFormat.PLAIN_TEXT;
+        content.put(paintFormat, this.etape.getId());
+
+        final WritableImage capture = this.vue.snapshot(null, null);
+        content.putImage(capture);
+        board.setContent(content);
     }
 }

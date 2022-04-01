@@ -18,5 +18,6 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
         this.label.setStyle("-fx-text-fill: white");
         this.setSpacing(10);
         this.setAlignment(Pos.CENTER);
+        this.setOnDragDetected(new EcouteurSources(this,this.etape));
     }
 }
