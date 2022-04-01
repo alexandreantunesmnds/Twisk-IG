@@ -18,6 +18,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private PointDeControleIG point;
     private EtapeIG etape;
     private ArrayList<EtapeIG> etapes = new ArrayList<>(10); //étapes selectionnées
+    private ArrayList<ArcIG> arcs = new ArrayList<>(10); //arcs selectionnées
     private int relier = 0;
 
     public MondeIG(){
@@ -149,17 +150,28 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         etp.setPosX(dragEventX - (etp.getLarg())/2);
         etp.setPosY(dragEventY - (etp.getHaut())/2);
 
-        etp.getPoint().get(0).setX(etp.getPosX());
-        etp.getPoint().get(0).setY(etp.getPosY() + (etp.getHaut())/2);
+        etp.getPoint().get(0).setX(etp.getPosX()+etp.getLarg()/2);
+        etp.getPoint().get(0).setY(etp.getPosY()-(int) TailleComposants.getInstance().getCircleSize());
 
-        etp.getPoint().get(1).setX(etp.getPosX() + (etp.getLarg())/2);
-        etp.getPoint().get(1).setY(etp.getPosY());
+        etp.getPoint().get(1).setX(etp.getPosX()+etp.getLarg()/2);
+        etp.getPoint().get(1).setY(etp.getPosY()+etp.getHaut()*3/2);
 
-        etp.getPoint().get(2).setX(etp.getPosX() + etp.getLarg());
-        etp.getPoint().get(2).setY(etp.getPosY() + (etp.getHaut())/2);
+        etp.getPoint().get(2).setX(etp.getPosX()-(int) TailleComposants.getInstance().getCircleSize()*2);
+        etp.getPoint().get(2).setY(etp.getPosY()+etp.getHaut()/2);
 
-        etp.getPoint().get(3).setX(etp.getPosX() + (etp.getLarg())/2);
-        etp.getPoint().get(3).setY(etp.getPosY() + etp.getHaut());
+        etp.getPoint().get(3).setX(etp.getPosX()+etp.getLarg());
+        etp.getPoint().get(3).setY(etp.getPosY()+etp.getHaut()/2);
         this.notifierObservateurs();
+    }
+    public void selectionArcs(ArcIG arc){
+
+    }
+    public void supprimerArcs(ArcIG arc){
+        for (ArcIG arcs : this.iteratorArc()){
+            if (arc.equals(arcs)){
+                this.arcList.remove(arc);
+            }
+        }
+
     }
 }
