@@ -15,6 +15,7 @@ public class MainTwisk extends Application {
         this.monde = new MondeIG();
         VueMenu menu = new VueMenu(this.monde);
         BorderPane root = new BorderPane() ;
+        root.setStyle("-fx-background-color: #e3e4e6");
         root.setTop(menu.getMenuBar());
         root.setBottom(new VueOutils(this.monde));
         root.setCenter(new VueMondeIG(this.monde));

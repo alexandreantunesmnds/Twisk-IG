@@ -34,8 +34,8 @@ public class VueArcIG extends Pane implements Observateur {
             polyLine.setStroke(Color.RED);
         }
         else{
-            line.setStroke(Color.GREEN);
-            polyLine.setStroke(Color.GREEN);
+            line.setStroke(Color.valueOf("#ff9a00"));
+            polyLine.setStroke(Color.valueOf("#ff9a00"));
         }
         this.setOnMouseClicked(new EcouteurArc(monde,arc));
         this.getChildren().addAll(line,polyLine);

@@ -14,7 +14,7 @@ public class VuePointDeControleIG extends Circle implements Observateur {
     public VuePointDeControleIG(MondeIG monde, PointDeControleIG point) {
         super(point.getTaille());
         //Setting the color of the circle
-        this.setFill(Color.MAGENTA);
+        this.setFill(Color.BLACK);
         this.relocate(point.getPosX(), point.getPosY());
         this.setOnMouseClicked(new EcouteurPoint(monde,point));
     }
