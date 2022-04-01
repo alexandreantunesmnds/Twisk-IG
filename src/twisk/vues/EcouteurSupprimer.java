@@ -12,5 +12,6 @@ public class EcouteurSupprimer implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         this.monde.supprimerEtapes();
+        this.monde.supprimerArcs();
     }
 }

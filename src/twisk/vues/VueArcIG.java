@@ -5,9 +5,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import twisk.mondeIG.ArcIG;
+import twisk.mondeIG.MondeIG;
 
 public class VueArcIG extends Pane implements Observateur {
-    public VueArcIG(ArcIG arc){
+    public VueArcIG(MondeIG monde, ArcIG arc){
         Line line = new Line();
         Polyline polyLine = new Polyline();
         //Ligne
@@ -27,9 +28,16 @@ public class VueArcIG extends Pane implements Observateur {
         double y2 = (1.0 / 2.0 * sin - Math.sqrt(3) / 2 * cos) * 10 + line.getEndY();
         polyLine.getPoints().setAll(x1,y1,x2,y2,line.getEndX(),line.getEndY());
         line.setStrokeWidth(5);
-        line.setStroke(Color.MAGENTA);
-        polyLine.setStroke(Color.MAGENTA);
         polyLine.setStrokeWidth(10);
+        if (arc.getSelected()==1){
+            line.setStroke(Color.RED);
+            polyLine.setStroke(Color.RED);
+        }
+        else{
+            line.setStroke(Color.GREEN);
+            polyLine.setStroke(Color.GREEN);
+        }
+        this.setOnMouseClicked(new EcouteurArc(monde,arc));
         this.getChildren().addAll(line,polyLine);
     }
 

@@ -18,6 +18,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private PointDeControleIG point;
     private EtapeIG etape;
     private ArrayList<EtapeIG> etapes = new ArrayList<>(10); //étapes selectionnées
+    private ArcIG arc;
     private ArrayList<ArcIG> arcs = new ArrayList<>(10); //arcs selectionnées
     private int relier = 0;
 
@@ -107,7 +108,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
     }
     public void selectionEtapes(EtapeIG etape) {
-        if (this.etape != null && this.etape.getNom().equals(etape.getNom())) {
+        if (this.etape != null && this.etape.equals(etape)) {
             this.etape.etapeDeSelect();
             this.etapes.remove(this.etape);
         } else {
@@ -119,7 +120,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     }
 
     public void supprimerEtapes(){
-        if (this.etape != null) { // si aucune étape n'est encore selectionnée on ne fait rien
+        if (this.etapes.size() > 0) {
             for (EtapeIG etapes : this.etapes) {
                 if (etapes.getSelected() == 1) {
                     this.tableEtape.remove(etapes.getId());
@@ -129,13 +130,13 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                             if (arc.getPoint1().getNomEtape().equals(etapes.getNom())) {
                                 this.arcList.remove(arc);
                             }
-                            notifierObservateurs();
                         }
                     }
                 }
-                notifierObservateurs();
             }
+            this.etapes.clear();
         }
+        notifierObservateurs();
     }
     public void renommerEtape(String nom){
         if(this.etapes != null && this.etapes.size() == 1) {
@@ -164,14 +165,24 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         this.notifierObservateurs();
     }
     public void selectionArcs(ArcIG arc){
-
-    }
-    public void supprimerArcs(ArcIG arc){
-        for (ArcIG arcs : this.iteratorArc()){
-            if (arc.equals(arcs)){
-                this.arcList.remove(arc);
-            }
+        if (this.arc != null && this.arc.equals(arc)) {
+            this.arc.setDeSelect();
+            this.arcs.remove(this.arc);
         }
-
+        else {
+            this.arc = arc;
+            arc.setSelected();
+            this.arcs.add(arc);
+        }
+        notifierObservateurs();
+    }
+    public void supprimerArcs() {
+        if (this.arcs.size() > 0) {
+            for (ArcIG arcs : this.arcs) {
+                this.arcList.remove(arcs);
+            }
+            this.arcs.clear();
+            notifierObservateurs();
+        }
     }
 }

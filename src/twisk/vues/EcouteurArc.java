@@ -2,20 +2,20 @@ package twisk.vues;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import twisk.mondeIG.ArcIG;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
 
 public class EcouteurArc implements EventHandler<MouseEvent> {
     private MondeIG monde;
-    private PointDeControleIG point;
-    public EcouteurArc (MondeIG monde, PointDeControleIG point){
+    private ArcIG arc;
+    public EcouteurArc (MondeIG monde,ArcIG arc){
         this.monde = monde;
-        this.point = point;
+        this.arc = arc;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        this.monde.sel;
-
+        this.monde.selectionArcs(this.arc);
     }
 }
