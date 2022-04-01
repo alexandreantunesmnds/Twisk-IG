@@ -56,11 +56,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                     tableEtape.put(id, actDef);
                     break;
             }
-            //On retire les sélections à chaque nouvel ajout d'étape
-            for (EtapeIG etapes : this.etapes){
-                etapes.etapeDeSelect();
-            }
-            this.etapes.clear();
             this.notifierObservateurs();
         }
     }
@@ -141,8 +136,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     public void renommerEtape(String nom){
         if(this.etapes != null && this.etapes.size() == 1) {
             this.etape.nom = nom;
-            notifierObservateurs();
         }
+        this.etapes.clear();
+        notifierObservateurs();
     }
     public HashMap<String, EtapeIG> getHash(){
         return this.tableEtape;
@@ -184,5 +180,16 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.arcs.clear();
             notifierObservateurs();
         }
+    }
+    public void effacerSelect(){
+        for(ArcIG arcs : this.arcs){
+            arcs.setDeSelect();
+        }
+        for(EtapeIG etapes : this.etapes){
+            etapes.etapeDeSelect();
+        }
+        this.etapes.clear();
+        this.arcs.clear();
+        notifierObservateurs();
     }
 }
