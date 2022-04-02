@@ -26,12 +26,20 @@ class PointDeControleIGTest {
     void getPosX() {
         assertEquals(this.pc1.getPosX(),200);
         assertEquals(this.pc2.getPosX(),400);
+        this.pc1.setX(300);
+        this.pc2.setX(500);
+        assertEquals(this.pc1.getPosX(),300);
+        assertEquals(this.pc2.getPosX(),500);
     }
 
     @Test
     void getPosY() {
         assertEquals(this.pc1.getPosY(),300);
         assertEquals(this.pc2.getPosY(),600);
+        this.pc1.setY(400);
+        this.pc2.setY(500);
+        assertEquals(this.pc1.getPosY(),400);
+        assertEquals(this.pc2.getPosY(),500);
     }
 
     @Test

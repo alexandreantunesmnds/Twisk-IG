@@ -14,8 +14,8 @@ class ActiviteIGTest {
     void setUp() {
         String id = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
         String id2 = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
-        this.act = new ActiviteIG("Dessin",id,10,10,4,3);
-        this.act2 = new ActiviteIG("Danse",id2,20,40,2,1);
+        this.act = new ActiviteIG("Dessin",id,10,10,3,4);
+        this.act2 = new ActiviteIG("Danse",id2,20,40,1,2);
     }
 
     @Test
@@ -58,5 +58,25 @@ class ActiviteIGTest {
     void getHaut() {
         assertEquals(this.act.getHaut(),10);
         assertEquals(this.act2.getHaut(),40);
+    }
+
+    @Test
+    void getTemps() {
+        assertEquals(this.act.getTemps(),4);
+        assertEquals(this.act2.getTemps(),2);
+    }
+
+    @Test
+    void getEcartTemps() {
+        assertEquals(this.act.getEcartTemps(),3);
+        assertEquals(this.act2.getEcartTemps(),1);
+    }
+
+    @Test
+    void getEstUneEntree() {
+        this.act.setEstUneEntree(1);
+        this.act2.setEstUneEntree(0);
+        assertEquals(this.act.getEstUneEntree(),1);
+        assertEquals(this.act2.getEstUneEntree(),0);
     }
 }

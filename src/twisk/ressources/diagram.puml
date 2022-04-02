@@ -1,124 +1,307 @@
 @startuml
-package twisk.mondeIG {
-   class ActiviteIG
-   class MondeIG
-   class EtapeIG
-}
-
+interface EventHandler{}
 package java.util {
 
-interface Iterable<EtapeIG,PointDeControleIG> {
-  Iterator<EtapeIG> iterator()
-}
-}
-package twisk.outils {
-class FabriqueIdentifiant {
-int noEtape
-static FabriqueIdentifiant getInstance()
-String getIdentifiantEtape()
-}
+        interface Iterable<EtapeIG,PointDeControleIG,ArcIG> {
+          Iterator<EtapeIG> iterator()
+        }
 
-FabriqueIdentifiant -- "1" FabriqueIdentifiant : static
-}
+    }
+package twisk{
 
 
-package twisk.vues {
-interface Observateur {
-void reagir()
-}
+    class MainTwisk extends Application{
+    MondeIG monde
+    void start (Stage primaryStage)
+    void main(String[] args)
+    }
 
-abstract VueEtapeIG extends VBox implements Observateur{
-VueEtapeIG(MondeIG monde, EtapeIG etape)
-}
+    package twisk.mondeIG {
+       class ActiviteIG
+       class MondeIG
+       class EtapeIG
+    }
 
-class VueActiviteIG extends VueEtapeIG implements Observateur {
-VueActiviteIG(MondeIG monde, EtapeIG etape)
-void reagir()
-
-}
-
-class VueMondeIG implements Observateur {
-VueMondeIG(MondeIG monde)
-void reagir()
-}
-class VueOutils implements Observateur {
-VueOutils(MondeIG monde)
-void reagir()
-}
-class Circle{}
-class VuePointDeControleIG extends Circle implements Observateur {
-VuePointDeControleIG(MondeIG monde, PointDeControleIG point)
-void reagir()
-}
+    package twisk.outils {
 
 
-VueEtapeIG --"1" Label
-VueActiviteIG --"1" Label
-VueMondeIG --|> Pane
-VueOutils --|> TilePane
-VueOutils -- "1" Button
+        Class TailleComposants {
+        TailleComposants instance
+        int LargBox;
+        int HautBox;
+        double circleSize;
+        TailleComposants getInstance()
+        int getLargBox()
+        int getHautBox()
+        double getCircleSize()
 
-Button - "1" EcouteurBouton : "       "
+        }
 
-interface EventHandler
+        Class FabriqueIdentifiant {
+        int noEtape
+        static FabriqueIdentifiant getInstance()
+        String getIdentifiantEtape()
+        }
 
-EcouteurBouton ..|> EventHandler
-}
-
-VueEtapeIG - "1" EtapeIG
-
-
-package twisk.mondeIG {
+    }
+        FabriqueIdentifiant -- "1" FabriqueIdentifiant : static
+        TailleComposants -- "1" TailleComposants : static
 
 
 
-class MondeIG implements Iterable{
-MondeIG()
-void ajouter(String type)
-void ajouterObservateur(Observateur v)
-void notifierObservateurs()
-}
+    package twisk.exceptions{
+        class TwiskException{
+        }
+    }
 
-abstract class EtapeIG implements Iterable {
-String nom
-String identifiant
-int posX
-int posY
-int largeur
-int hauteur
-
-EtapeIG(String nom, String idf, int larg, int haut)
-}
-
-class ActiviteIG {
-ActiviteIG(String nom, String idf, int larg, int haut)
-}
-class PointDeControleIG {
-int posX
-int posY
-String id
-PointDeControleIG (int posX, int posY, String id, EtapeIG etape)
-int getPosX()
-int getPosY()
-String getId()
-String getNomEtape()
-Double getTaille()
-}
-
-class ArcIG {
-PointDeControleIG point1;
-PointDeControleIG point2;
-public ArcIG(PointDeControleIG point1, PointDeControleIG point2)
-}
-
-MondeIG "1"-right "*" Observateur
-
-MondeIG --"*" EtapeIG
-MondeIG --"*" ArcIG
-EtapeIG <|-down- ActiviteIG
-EtapeIG "1"--"*" PointDeControleIG
+    class Exception {
+    }
 
 
+    package twisk.vues {
 
+        interface Observateur {
+        void reagir()
+        }
+
+        abstract VueEtapeIG extends VBox implements Observateur{
+        MondeIG monde
+        EtapeIG etape
+        Label label
+        VueEtapeIG(MondeIG monde, EtapeIG etape)
+        }
+
+        class VueActiviteIG extends VueEtapeIG implements Observateur {
+        VueActiviteIG(MondeIG monde, EtapeIG etape)
+        void reagir()
+        }
+
+        class VueMondeIG implements Observateur {
+        Button bouton;
+        MondeIG monde
+        VueMondeIG(MondeIG monde)
+        void reagir()
+        }
+        class VueOutils implements Observateur {
+        VueOutils(MondeIG monde)
+        void reagir()
+        }
+
+        class VueArcIG extends Pane implements Observateur{
+        VueArcIG(MondeIG monde, ArcIG arc)
+        void reagir()
+        }
+
+
+        class Circle{}
+        class VuePointDeControleIG extends Circle implements Observateur {
+        VuePointDeControleIG(MondeIG monde, PointDeControleIG point)
+        void reagir()
+        }
+        class EcouteurArc implements EventHandler {
+            MondeIG monde
+            ArcIG arc
+            EcouteurArc (MondeIG monde,ArcIG arc)
+            handle(MouseEvent mouseEvent)
+        }
+        class EcouteurBouton implements EventHandler{
+        MondeIG monde;
+        EcouteurBouton (MondeIG monde)
+        handle(ActionEvent actionEvent)
+        }
+        class EcouteurSources implements EventHandler{
+        EtapeIG etape
+        VueEtapeIG vue
+        EcouteurSources(VueEtapeIG vue, EtapeIG etape)
+        handle(MouseEvent t)
+        }
+        class EcouteurDragDrop implements EventHandler{
+        MondeIG monde
+        EcouteurDragDrop(MondeIG monde)
+        void handle(DragEvent dragEvent)
+        }
+        class EcouteurDragOver implements EventHandler{
+        EcouteurDragOver()
+        void handle(DragEvent dragEvent)
+        }
+        class EcouteurPoint implements EventHandler{
+        MondeIG monde
+        PointDeControleIG point
+        EcouteurPoint (MondeIG monde, PointDeControleIG point)
+        void handle(MouseEvent mouseEvent)
+        }
+        class EcouteurSelectEtapes implements EventHandler{
+        MondeIG monde
+        EpeIG etape
+        EcouteurSelectEtapes(MondeIG monde,EtapeIG etape)
+        void handle(MouseEvent mouseEvent)
+        }
+
+    }
+
+    VueEtapeIG --"1" Label
+    VueActiviteIG --"1" Label
+    VueMondeIG --|> Pane
+    VueOutils --|> TilePane
+    VueOutils -- "1" Button
+    Button - "1" EcouteurBouton : "       "
+    VueEtapeIG - "1" EtapeIG
+
+    package twisk.vues.menu{
+
+        class EcouteurEcart implements EventHandler{
+        MondeIG monde
+        EcouteurEcart(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+
+        class EcouteurEffacer implements EventHandler{
+        MondeIG monde
+        EcouteurEffacer(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+
+        class EcouteurEntree implements EventHandler{
+        MondeIG monde
+        EcouteurEntree(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+        class EcouteurQuitter implements EventHandler{
+        EcouteurQuitter()
+        void handle(ActionEvent actionEvent)
+        }
+
+        class EcouteurRenommer implements EventHandler{
+        MondeIG monde
+        EcouteurRenommer(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+        class EcouteurSortie implements EventHandler{
+        MondeIG monde
+        EcouteurSortie(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+        class EcouteurSupprimer implements EventHandler{
+        MondeIG monde
+        EcouteurSupprimer(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+        class EcouteurTemps implements EventHandler{
+        MondeIG monde
+        EcouteurTemps(MondeIG monde)
+        void handle(ActionEvent actionEvent)
+        }
+
+
+        class VueMenu extends MenuBar implements Observateur{
+        MondeIG monde
+        MenuBar menuBar
+        MenuItem renommer
+        MenuItem temps
+        MenuItem ecartTemps
+        VueMenu(MondeIG monde)
+        MenuBar getMenuBar()
+        void reagir()
+        }
+
+    package twisk.mondeIG {
+
+        class SujetObserve{
+        ArrayList<Observateur> obs
+        void ajouterObservateur(Observateur v)
+        void notifierObservateurs()
+        }
+
+        class MondeIG implements Iterable{
+        MondeIG()
+        void ajouter (String type)
+        void ajouter(PointDeControleIG pt1, PointDeControleIG pt2)
+        void effacerSelect()
+        HashMap<String, EtapeIG> getHash()
+        int getNbEtapesSelect()
+        int getSize()
+        Iterator<EtapeIG> iterator()
+        Iterable<ArcIG> iteratorArc()
+        void positionEtapes(int dragEventX, int dragEventY, EtapeIG etp)
+        void renommerEtape(String nom)
+        void selectEntree()
+        void selectionArcs(ArcIG arc)
+        void selectionEtapes(EtapeIG etape)
+        void selectionPoint(PointDeControleIG point)
+        void selectSortie()
+        void setEcart(int ecartTemps)
+        oid setTemps(int temps)
+        void supprimerArcs()
+        void supprimerEtapes()
+        void ajouter(String type)
+        void ajouterObservateur(Observateur v)
+        }
+
+        abstract class EtapeIG implements Iterable {
+        String nom
+        String identifiant
+        int posX
+        int posY
+        int largeur
+        int hauteur
+        ArrayList <PointDeControleIG> pcList;
+        int selected
+        int estUneEntree
+
+        EtapeIG(String nom, String idf, int larg, int haut)
+        }
+
+        class ActiviteIG {
+        ActiviteIG(String nom, String idf, int larg, int haut, int ecartTemps,int temps)
+        Iterator<PointDeControleIG> iterator()
+        String getNom()
+        String getId()
+        int getTemps()
+        int getEcartTemps()
+        int getPosX()
+        int getPosY()
+        int getLarg()
+        int getHaut()
+        void etapeSelect()
+        void etapeDeSelect()
+        int getSelected()
+        void setPosX(int posX)
+        void setPosY(int posY
+        ArrayList <PointDeControleIG> getPoint()
+        void setEstUneEntree(int estUneEntree)
+        int getEstUneEntree()
+        }
+        class PointDeControleIG {
+        int posX
+        int posY
+        String id
+        PointDeControleIG (double posX, double posY, String id, EtapeIG etape)
+        double getPosX()
+        double getPosY()
+        String getId()
+        String getNomEtape()
+        Double getTaille()
+        void setX(double posX)
+        void setY(double posY)
+        }
+
+        class ArcIG {
+        PointDeControleIG point1;
+        PointDeControleIG point2;
+        public ArcIG(PointDeControleIG point1, PointDeControleIG point2)
+        PointDeControleIG getPoint1()
+        PointDeControleIG getPoint2()
+        void setSelected ()
+        void setDeSelect()
+        int getSelected()
+        }
+    }
+    SujetObserve "1"-right "*" Observateur
+    Exception <|-down- TwiskException
+    MondeIG --"*" EtapeIG
+    MondeIG --"*" ArcIG
+    SujetObserve <|-down- MondeIG
+    EtapeIG <|-down- ActiviteIG
+    EtapeIG "1"--"*" PointDeControleIG
 }
 @enduml

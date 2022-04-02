@@ -20,13 +20,12 @@ public class EcouteurPoint implements EventHandler<MouseEvent> {
         try {
             this.monde.selectionPoint(this.point);
         } catch (TwiskException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Erreur !");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur choix du point de contrôle !");
 
-            alert.setHeaderText(null);
+            alert.setHeaderText("Veuillez choisir un autre point de contrôle !");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 }

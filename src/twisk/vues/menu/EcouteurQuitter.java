@@ -1,4 +1,4 @@
-package twisk.vues;
+package twisk.vues.menu;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

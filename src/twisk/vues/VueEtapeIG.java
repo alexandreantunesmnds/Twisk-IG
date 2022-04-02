@@ -21,15 +21,15 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
         if (this.etape.getEstUneEntree() == 1) { //c'est une entrée
             Image img = new Image("twisk/ressources/images/entree.png");
             ImageView view = new ImageView(img);
-            view.setFitWidth(40);
-            view.setFitHeight(40);
+            view.setFitWidth(20);
+            view.setFitHeight(20);
             this.label.setGraphic(view);
         }
         else if(this.etape.getEstUneEntree()==-1){ //c'est une sortie
             Image image = new Image("twisk/ressources/images/sortie.png");
             ImageView viewSortie = new ImageView(image);
-            viewSortie.setFitWidth(40);
-            viewSortie.setFitHeight(40);
+            viewSortie.setFitWidth(20);
+            viewSortie.setFitHeight(20);
             this.label.setGraphic(viewSortie);
         }
         this.setSpacing(10);

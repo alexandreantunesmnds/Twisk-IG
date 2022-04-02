@@ -1,11 +1,8 @@
 package twisk.mondeIG;
 
-import javafx.scene.shape.Arc;
 import twisk.exceptions.TwiskException;
 import twisk.outils.FabriqueIdentifiant;
 import twisk.outils.TailleComposants;
-import twisk.vues.Observateur;
-import twisk.vues.VueArcIG;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,8 +53,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                     tableEtape.put(id, actDef);
                     break;
             }
-            this.notifierObservateurs();
         }
+        this.notifierObservateurs();
     }
 
     @Override
@@ -76,7 +73,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
         else{
             for (ArcIG arc : this.iteratorArc() ) {
-                if (Objects.equals(arc.getPoint2().getNomEtape(), pt2.getNomEtape())){
+                if (Objects.equals(arc.getPoint1().getNomEtape(), pt1.getNomEtape()) && Objects.equals(arc.getPoint2().getNomEtape(), pt2.getNomEtape()) || Objects.equals(arc.getPoint2().getNomEtape(), pt1.getNomEtape()) && Objects.equals(arc.getPoint1().getNomEtape(), pt2.getNomEtape())){
                     throw(new TwiskException("\nAjout de l'arc impossible : vous essayez de relier 2 fois une étape\n"));
                 }
             }
@@ -84,8 +81,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             //quand l'arc est ajouté on informe que les deux points sont reliés
             this.relier = 1;
             this.point = null;
-            notifierObservateurs();
         }
+        this.notifierObservateurs();
     }
     //les conditions à ajouter pour la validité des arcs : une etape ne peut être reliée que par un arc(ou aucun) avec une autre étape ; un point de controle doit relié un autre point de controle (+ d'une autre étape)
     public void selectionPoint(PointDeControleIG point) throws TwiskException {
@@ -101,6 +98,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.point = point;
             this.relier = 0;
         }
+        this.notifierObservateurs();
     }
     public int getNbEtapesSelect(){
         return this.etapes.size();
@@ -114,7 +112,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.etape.etapeSelect();
             this.etapes.add(etape);
         }
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
 
     public void supprimerEtapes(){
@@ -134,14 +132,14 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             }
             this.etapes.clear();
         }
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
     public void renommerEtape(String nom){
         if(this.etapes != null && this.etapes.size() == 1) {
             this.etape.nom = nom;
         }
         this.etapes.clear();
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
     public HashMap<String, EtapeIG> getHash(){
         return this.tableEtape;
@@ -163,6 +161,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         etp.getPoint().get(3).setY(etp.getPosY()+etp.getHaut()/2);
         this.notifierObservateurs();
     }
+
     public void selectionArcs(ArcIG arc){
         if (this.arc != null && this.arc.equals(arc)) {
             this.arc.setDeSelect();
@@ -173,7 +172,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             arc.setSelected();
             this.arcs.add(arc);
         }
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
     public void supprimerArcs() {
         if (this.arcs.size() > 0) {
@@ -181,7 +180,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
                 this.arcList.remove(arcs);
             }
             this.arcs.clear();
-            notifierObservateurs();
+            this.notifierObservateurs();
         }
     }
     public void effacerSelect(){
@@ -193,7 +192,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
         this.etapes.clear();
         this.arcs.clear();
-        notifierObservateurs();
+        this.notifierObservateurs();
     }
     public void selectEntree(){
         for(EtapeIG etapes : this.etapes) {
@@ -217,10 +216,22 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
         this.notifierObservateurs();
     }
-    public void setEcart(int ecartTemps){
-        this.etape.ecartTemps = ecartTemps;
+    public void setEcart(int ecartTemps) throws TwiskException{
+        if(ecartTemps < this.etape.temps && this.etape.ecartTemps > 0) {
+            this.etape.ecartTemps = ecartTemps;
+        }
+        else {
+            throw(new TwiskException("Erreur : valeur écart-temps invalide ! "));
+        }
+        this.notifierObservateurs();
     }
-    public void setTemps(int temps){
-        this.etape.temps = temps;
+    public void setTemps(int temps) throws TwiskException {
+        if(this.etape.ecartTemps < temps && this.etape.temps > 0) {
+            this.etape.temps = temps;
+        }
+        else {
+            throw(new TwiskException("Veuillez choisir une valeur de temps supérieure à l'écart-temps et supérieure à 0 ! "));
+        }
+        this.notifierObservateurs();
     }
 }

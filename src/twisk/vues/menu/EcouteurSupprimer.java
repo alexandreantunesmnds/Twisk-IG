@@ -1,16 +1,17 @@
-package twisk.vues;
+package twisk.vues.menu;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import twisk.mondeIG.MondeIG;
 
-public class EcouteurEffacer implements EventHandler<ActionEvent> {
+public class EcouteurSupprimer implements EventHandler<ActionEvent> {
     private MondeIG monde;
-    public EcouteurEffacer(MondeIG monde){
+    public EcouteurSupprimer(MondeIG monde){
         this.monde = monde;
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.monde.effacerSelect();
+        this.monde.supprimerEtapes();
+        this.monde.supprimerArcs();
     }
 }

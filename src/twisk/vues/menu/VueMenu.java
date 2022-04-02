@@ -1,12 +1,10 @@
-package twisk.vues;
+package twisk.vues.menu;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import twisk.mondeIG.MondeIG;
-
-import java.util.Optional;
+import twisk.vues.*;
 
 
 public class VueMenu extends MenuBar implements Observateur {
@@ -41,7 +39,6 @@ public class VueMenu extends MenuBar implements Observateur {
         this.temps = new MenuItem("Changer le temps");
         this.ecartTemps = new MenuItem("Changer l'écart-temps");
         //Conditions sur les items
-        System.out.println(this.monde.getNbEtapesSelect());
         if (this.monde.getNbEtapesSelect() == 1){
             this.renommer.setDisable(false);
             this.temps.setDisable(false);

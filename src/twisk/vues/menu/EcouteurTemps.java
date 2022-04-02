@@ -1,8 +1,10 @@
-package twisk.vues;
+package twisk.vues.menu;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import twisk.exceptions.TwiskException;
 import twisk.mondeIG.MondeIG;
 
 import java.util.Optional;
@@ -22,7 +24,16 @@ public class EcouteurTemps implements EventHandler<ActionEvent> {
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(num -> {
-            this.monde.setTemps(Integer.parseInt(num));
+            try {
+                this.monde.setTemps(Integer.parseInt(num));
+            } catch (TwiskException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur choix du temps !");
+
+                alert.setHeaderText("Veuillez choisir une valeur d'écart-temps inférieure au temps et supérieure à 0 ! ");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         });
 
     }

@@ -1,8 +1,10 @@
-package twisk.vues;
+package twisk.vues.menu;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import twisk.exceptions.TwiskException;
 import twisk.mondeIG.MondeIG;
 
 import java.util.Optional;
@@ -22,7 +24,16 @@ public class EcouteurEcart implements EventHandler<ActionEvent> {
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(num -> {
-            this.monde.setEcart(Integer.parseInt(num));
+            try {
+                this.monde.setEcart(Integer.parseInt(num));
+            } catch (TwiskException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur choix de l'écart-temps !");
+
+                alert.setHeaderText(null);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         });
     }
 }

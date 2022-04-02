@@ -16,7 +16,7 @@ public class EcouteurDragDrop implements EventHandler<DragEvent> {
     }
     @Override
     public void handle(DragEvent dragEvent) {
-        System.out.println("CoordonnÃ©es souris : X= " + dragEvent.getX() + "   Y= " + dragEvent.getY());
+        System.out.println("Coordonnées souris : X= " + dragEvent.getX() + "   Y= " + dragEvent.getY());
         Dragboard board = dragEvent.getDragboard();
         System.out.println("Identifiant destination : " + board.getString());
 
@@ -29,12 +29,6 @@ public class EcouteurDragDrop implements EventHandler<DragEvent> {
             }
         }
         this.monde.positionEtapes((int)dragEvent.getX(),(int)dragEvent.getY(),etp);
-
-        //Verfiier si l'identifiant du point de l'arc contient l'identifiant de l'etape
-        /*for (Iterator<ArcIG> arc = this.monde.iteratorArc(); arc.hasNext();){
-            for (arc.next().)
-        }*/
-
 
         dragEvent.setDropCompleted(true);
     }
