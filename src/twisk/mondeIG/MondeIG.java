@@ -32,27 +32,27 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             int haut = TailleComposants.getInstance().getHautBox();
             switch (id) {
                 case "1":
-                    EtapeIG act1 = new ActiviteIG("Piscine", id, larg, haut);
+                    EtapeIG act1 = new ActiviteIG("Piscine", id, larg, haut, 4, 6);
                     tableEtape.put(id, act1);
                     break;
                 case "2":
-                    EtapeIG act2 = new ActiviteIG("Toboggan", id, larg, haut);
+                    EtapeIG act2 = new ActiviteIG("Toboggan", id, larg, haut,2,3);
                     tableEtape.put(id, act2);
                     break;
                 case "3":
-                    EtapeIG act3 = new ActiviteIG("Spa", id, larg, haut);
+                    EtapeIG act3 = new ActiviteIG("Spa", id, larg, haut,3,4);
                     tableEtape.put(id, act3);
                     break;
                 case "4":
-                    EtapeIG act4 = new ActiviteIG("Boutique", id, larg, haut);
+                    EtapeIG act4 = new ActiviteIG("Boutique", id, larg, haut,1,2);
                     tableEtape.put(id, act4);
                     break;
                 case "5":
-                    EtapeIG act5 = new ActiviteIG("Restaurant", id, larg, haut);
+                    EtapeIG act5 = new ActiviteIG("Restaurant", id, larg, haut,2,3);
                     tableEtape.put(id, act5);
                     break;
                 default:
-                    EtapeIG actDef = new ActiviteIG("Etape "+ id,id,larg,haut);
+                    EtapeIG actDef = new ActiviteIG("Etape "+ id,id,larg,haut,3,4);
                     tableEtape.put(id, actDef);
                     break;
             }
@@ -101,6 +101,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             this.point = point;
             this.relier = 0;
         }
+    }
+    public int getNbEtapesSelect(){
+        return this.etapes.size();
     }
     public void selectionEtapes(EtapeIG etape) {
         if (this.etape != null && this.etape.equals(etape)) {
@@ -191,5 +194,33 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         this.etapes.clear();
         this.arcs.clear();
         notifierObservateurs();
+    }
+    public void selectEntree(){
+        for(EtapeIG etapes : this.etapes) {
+            if (etapes.getEstUneEntree() == 0) {
+                etapes.setEstUneEntree(1); //on indique que l'étape est une entrée
+            }
+            else{ //sinon si l'étape est déjà comme une entrée alors ce n'est plus une entrée
+                etapes.setEstUneEntree(0);
+            }
+        }
+        this.notifierObservateurs();
+    }
+    public void selectSortie(){
+        for(EtapeIG etapes : this.etapes) {
+            if (etapes.getEstUneEntree() == 0) {
+                etapes.setEstUneEntree(-1); //on indique que l'étape est une entrée
+            }
+            else{ //sinon si l'étape est déjà comme une sortie alors ce n'est plus une sortie
+                etapes.setEstUneEntree(0);
+            }
+        }
+        this.notifierObservateurs();
+    }
+    public void setEcart(int ecartTemps){
+        this.etape.ecartTemps = ecartTemps;
+    }
+    public void setTemps(int temps){
+        this.etape.temps = temps;
     }
 }

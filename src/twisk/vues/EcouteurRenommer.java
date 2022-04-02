@@ -14,7 +14,7 @@ public class EcouteurRenommer implements EventHandler<ActionEvent> {
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog("Renommer l'activité");
+        TextInputDialog dialog = new TextInputDialog("Zoo");
 
         dialog.setTitle("Renommer l'activité");
         dialog.setHeaderText("Nom de l'activité choisi:");

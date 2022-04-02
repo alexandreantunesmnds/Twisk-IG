@@ -16,8 +16,8 @@ class PointDeControleIGTest {
 
     @BeforeEach
     void setUp() {
-        this.act1 = new ActiviteIG("Toboggan","id1",12,12);
-        this.act2 = new ActiviteIG("Zoo","id2",30,30);
+        this.act1 = new ActiviteIG("Toboggan","id1",12,12,6,3);
+        this.act2 = new ActiviteIG("Zoo","id2",30,30,3,1);
         this.pc1 = new PointDeControleIG(200,300,"id1",act1);
         this.pc2 = new PointDeControleIG(400,600,"id2",act2);
     }

@@ -17,8 +17,8 @@ class ArcIGTest {
     ArcIG arc;
     @BeforeEach
     void setUp() {
-        this.etape1 = new ActiviteIG("Toboggan","id1",100,100);
-        this.etape2 = new ActiviteIG("Restaurant","id2",400,500);
+        this.etape1 = new ActiviteIG("Toboggan","id1",100,100,3,2);
+        this.etape2 = new ActiviteIG("Restaurant","id2",400,500,4,2);
         this.point1 = new PointDeControleIG(100,200,"id1",this.etape1);
         this.point2 = new PointDeControleIG(200,300,"id2",this.etape2);
         this.arc = new ArcIG(this.point1,this.point2);

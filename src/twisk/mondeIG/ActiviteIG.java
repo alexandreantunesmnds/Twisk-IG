@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ActiviteIG extends EtapeIG {
-    public ActiviteIG(String nom, String idf, int larg, int haut){
-        super(nom,idf,larg,haut);
+    public ActiviteIG(String nom, String idf, int larg, int haut, int ecartTemps,int temps){
+        super(nom,idf,larg,haut,ecartTemps,temps);
         this.pcList = new ArrayList<>(4);
         this.pcList.add(new PointDeControleIG(this.getPosX()+larg/2,this.getPosY()-(int) TailleComposants.getInstance().getCircleSize(),"id1",this));
         this.pcList.add(new PointDeControleIG(this.getPosX()+larg/2,this.getPosY()+this.getHaut()*3/2,"id2",this));
@@ -26,6 +26,17 @@ public class ActiviteIG extends EtapeIG {
     public String getId(){
         return this.identifiant;
     }
+
+    @Override
+    public int getTemps() {
+        return this.temps;
+    }
+
+    @Override
+    public int getEcartTemps() {
+        return this.ecartTemps;
+    }
+
     public int getPosX(){
         return this.posX;
     }
@@ -57,5 +68,15 @@ public class ActiviteIG extends EtapeIG {
     }
     public ArrayList <PointDeControleIG> getPoint(){
         return this.pcList;
+    }
+
+    @Override
+    public void setEstUneEntree(int estUneEntree) {
+        this.estUneEntree = estUneEntree;
+    }
+
+    @Override
+    public int getEstUneEntree() {
+        return this.estUneEntree;
     }
 }

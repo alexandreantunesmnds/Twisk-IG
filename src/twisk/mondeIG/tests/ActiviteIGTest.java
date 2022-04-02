@@ -14,8 +14,8 @@ class ActiviteIGTest {
     void setUp() {
         String id = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
         String id2 = FabriqueIdentifiant.getInstance().getIdentifiantEtape();
-        this.act = new ActiviteIG("Dessin",id,10,10);
-        this.act2 = new ActiviteIG("Danse",id2,20,40);
+        this.act = new ActiviteIG("Dessin",id,10,10,4,3);
+        this.act2 = new ActiviteIG("Danse",id2,20,40,2,1);
     }
 
     @Test
