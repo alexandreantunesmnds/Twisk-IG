@@ -1,12 +1,10 @@
 package twisk.vues;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 import twisk.outils.TailleComposants;
+import twisk.vues.ecouteurs.EcouteurSelectEtapes;
 
 public class VueActiviteIG extends VueEtapeIG implements  Observateur{
     public VueActiviteIG(MondeIG monde, EtapeIG etape) {

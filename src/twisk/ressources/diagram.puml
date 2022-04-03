@@ -93,48 +93,49 @@ package twisk{
         }
 
 
-        class Circle{}
         class VuePointDeControleIG extends Circle implements Observateur {
         VuePointDeControleIG(MondeIG monde, PointDeControleIG point)
         void reagir()
         }
-        class EcouteurArc implements EventHandler {
+        package twisk.vues.ecouteurs {
+            class EcouteurArc implements EventHandler {
+                MondeIG monde
+                ArcIG arc
+                EcouteurArc (MondeIG monde,ArcIG arc)
+                handle(MouseEvent mouseEvent)
+            }
+            class EcouteurBouton implements EventHandler{
+            MondeIG monde;
+            EcouteurBouton (MondeIG monde)
+            handle(ActionEvent actionEvent)
+            }
+            class EcouteurSources implements EventHandler{
+            EtapeIG etape
+            VueEtapeIG vue
+            EcouteurSources(VueEtapeIG vue, EtapeIG etape)
+            handle(MouseEvent t)
+            }
+            class EcouteurDragDrop implements EventHandler{
             MondeIG monde
-            ArcIG arc
-            EcouteurArc (MondeIG monde,ArcIG arc)
-            handle(MouseEvent mouseEvent)
-        }
-        class EcouteurBouton implements EventHandler{
-        MondeIG monde;
-        EcouteurBouton (MondeIG monde)
-        handle(ActionEvent actionEvent)
-        }
-        class EcouteurSources implements EventHandler{
-        EtapeIG etape
-        VueEtapeIG vue
-        EcouteurSources(VueEtapeIG vue, EtapeIG etape)
-        handle(MouseEvent t)
-        }
-        class EcouteurDragDrop implements EventHandler{
-        MondeIG monde
-        EcouteurDragDrop(MondeIG monde)
-        void handle(DragEvent dragEvent)
-        }
-        class EcouteurDragOver implements EventHandler{
-        EcouteurDragOver()
-        void handle(DragEvent dragEvent)
-        }
-        class EcouteurPoint implements EventHandler{
-        MondeIG monde
-        PointDeControleIG point
-        EcouteurPoint (MondeIG monde, PointDeControleIG point)
-        void handle(MouseEvent mouseEvent)
-        }
-        class EcouteurSelectEtapes implements EventHandler{
-        MondeIG monde
-        EpeIG etape
-        EcouteurSelectEtapes(MondeIG monde,EtapeIG etape)
-        void handle(MouseEvent mouseEvent)
+            EcouteurDragDrop(MondeIG monde)
+            void handle(DragEvent dragEvent)
+            }
+            class EcouteurDragOver implements EventHandler{
+            EcouteurDragOver()
+            void handle(DragEvent dragEvent)
+            }
+            class EcouteurPoint implements EventHandler{
+            MondeIG monde
+            PointDeControleIG point
+            EcouteurPoint (MondeIG monde, PointDeControleIG point)
+            void handle(MouseEvent mouseEvent)
+            }
+            class EcouteurSelectEtapes implements EventHandler{
+            MondeIG monde
+            EpeIG etape
+            EcouteurSelectEtapes(MondeIG monde,EtapeIG etape)
+            void handle(MouseEvent mouseEvent)
+            }
         }
 
     }

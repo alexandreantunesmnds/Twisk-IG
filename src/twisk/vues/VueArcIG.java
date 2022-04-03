@@ -6,6 +6,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import twisk.mondeIG.ArcIG;
 import twisk.mondeIG.MondeIG;
+import twisk.vues.ecouteurs.EcouteurArc;
 
 public class VueArcIG extends Pane implements Observateur {
     public VueArcIG(MondeIG monde, ArcIG arc){

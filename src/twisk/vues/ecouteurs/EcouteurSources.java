@@ -1,4 +1,4 @@
-package twisk.vues;
+package twisk.vues.ecouteurs;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +9,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import jdk.jfr.Label;
 import twisk.mondeIG.EtapeIG;
+import twisk.vues.VueEtapeIG;
 
 public class EcouteurSources implements EventHandler<MouseEvent> {
     private EtapeIG etape;

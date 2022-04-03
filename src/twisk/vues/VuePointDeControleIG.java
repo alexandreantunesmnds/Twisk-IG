@@ -1,14 +1,10 @@
 package twisk.vues;
 
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
-import twisk.outils.TailleComposants;
+import twisk.vues.ecouteurs.EcouteurPoint;
 
 public class VuePointDeControleIG extends Circle implements Observateur {
     public VuePointDeControleIG(MondeIG monde, PointDeControleIG point) {

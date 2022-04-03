@@ -1,4 +1,4 @@
-package twisk.vues;
+package twisk.vues.ecouteurs;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;

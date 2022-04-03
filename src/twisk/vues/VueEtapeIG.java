@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
+import twisk.vues.ecouteurs.EcouteurSources;
 
 public abstract class VueEtapeIG extends VBox implements Observateur {
     protected MondeIG monde;

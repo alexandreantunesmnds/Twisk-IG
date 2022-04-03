@@ -5,8 +5,8 @@ import twisk.mondeIG.ArcIG;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.PointDeControleIG;
-
-import java.util.Iterator;
+import twisk.vues.ecouteurs.EcouteurDragDrop;
+import twisk.vues.ecouteurs.EcouteurDragOver;
 
 public class VueMondeIG extends Pane implements Observateur{
     private MondeIG monde;
