@@ -2,13 +2,13 @@ package twisk.mondeIG.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.mondeIG.ActiviteIG;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
 
 import java.util.Iterator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class MondeIGTest {
     MondeIG monde;

@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import twisk.mondeIG.ArcIG;
 import twisk.mondeIG.MondeIG;
-import twisk.mondeIG.PointDeControleIG;
 
 public class EcouteurArc implements EventHandler<MouseEvent> {
     private MondeIG monde;

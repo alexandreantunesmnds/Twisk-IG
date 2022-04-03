@@ -1,13 +1,8 @@
 package twisk.vues.ecouteurs;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import jdk.jfr.Label;
 import twisk.mondeIG.EtapeIG;
 import twisk.vues.VueEtapeIG;
 
